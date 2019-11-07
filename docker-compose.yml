@@ -1,0 +1,67 @@
+version: "2"
+services:
+ eureka-server:
+       container_name: eureka-server
+       image:
+            udeep1995/eureka-server:latest
+       expose:
+            - 8761
+       ports:
+            - "8761:8761"   
+       hostname: eureka-service  
+ zuul-gateway:
+       container_name: ZuulServer
+       image:
+            udeep1995/zuul-server:latest
+       expose:
+            - 8765
+       ports:
+            - "8765:8765" 
+       links:
+            - eureka-server:eureka-server
+       depends_on:
+            - eureka-server
+ user-service:
+       container_name: user-service
+       image:
+            udeep1995/user-service:latest
+       expose:
+            - 8100
+       ports:
+            - "8100:8100" 
+       links:
+            - eureka-server:eureka-server
+       depends_on:
+            - eureka-server
+ account-service:
+       container_name: account-service
+       image:
+            udeep1995/account-service:latest
+       expose:
+            - 8200
+       ports:
+            - "8200:8200" 
+       links:
+            - eureka-server:eureka-server
+       depends_on:
+            - eureka-server
+ payment-service:
+       container_name: payment-service
+       image:
+            udeep1995/payment-service:latest
+       expose:
+            - 8300
+       ports:
+            - "8300:8300" 
+       links:
+            - eureka-server:eureka-server
+            - user-service:user-service
+            - account-service:account-service
+       depends_on:
+            - eureka-server
+            - user-service
+            - account-service
+
+
+            
+
