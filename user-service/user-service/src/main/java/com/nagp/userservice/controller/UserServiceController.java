@@ -23,6 +23,11 @@ public class UserServiceController {
 	@Autowired
 	private UserService userService;
 	
+	@GetMapping("/test")
+	public Integer test(){
+		return 100;
+	}
+	
 	@GetMapping("/user/{emailId}/{password}")
 	public String getUserByEmailAndPassword(@PathVariable String emailId, @PathVariable String password) throws Exception{
 		Gson gson = new Gson();
