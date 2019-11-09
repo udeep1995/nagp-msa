@@ -13,9 +13,14 @@ import com.nagp.userservice.criteria.UserCriteria;
 import com.nagp.userservice.proxy.AccountServiceProxy;
 import com.nagp.userservice.service.UserService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @Service
 public class UserServiceImpl implements UserService{
 
+	
+	Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private AccountServiceProxy accountServiceProxy;
 	
@@ -49,6 +54,7 @@ public class UserServiceImpl implements UserService{
 		}
 		user.setLinkedAccounts(null);
 		allUsers.add(user);
+		LOGGER.info("{}", user);
 		return user.getUserId();
 	}
 	

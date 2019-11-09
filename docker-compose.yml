@@ -61,7 +61,3 @@ services:
             - eureka-server
             - user-service
             - account-service
-
-
-            
-

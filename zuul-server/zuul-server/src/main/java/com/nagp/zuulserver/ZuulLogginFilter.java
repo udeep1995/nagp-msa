@@ -18,7 +18,7 @@ public class ZuulLogginFilter extends ZuulFilter{
 	public Object run() throws ZuulException {
 		// TODO Auto-generated method stub
 		HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
-		logger.info("udeep ++ request -> {} request uri -> {}", request,request.getRequestURI());
+		logger.info("Request -> {} Request uri -> {}", request,request.getRequestURI());
 		return null;
 	}
 
